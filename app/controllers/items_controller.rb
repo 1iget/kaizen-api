@@ -15,7 +15,8 @@ class ItemsController < OpenReadController
 
   # POST /items
   def create
-    @item = Item.new(item_params)
+    @item = current_user.items.build(item_params)
+    # @item = Item.new(item_params)
 
     if @item.save
       render json: @item, status: :created, location: @item
