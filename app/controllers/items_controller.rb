@@ -42,6 +42,9 @@ class ItemsController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
+      # @item = current_user.items.find(params[:id])
+      # Display only the current user's items during show, update, delete
+      # Commented out for quick reference during development
       @item = Item.find(params[:id])
     end
 
