@@ -1,11 +1,11 @@
 class CreateClients < ActiveRecord::Migration[5.1]
   def change
     create_table :clients do |t|
-      t.string, :email
-      t.string, :token
-      t.string :password_digest
+      t.string :email, null: false, index: { unique: true }
+      t.string :token, null: false, index: { unique: true }
+      t.string :password_digest, null: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

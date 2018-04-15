@@ -1,3 +1,7 @@
 class ClientSerializer < ActiveModel::Serializer
-  attributes :id, :email, :token, :password_digest
+  attributes :id, :email, :token
+
+  def token
+    Rails.application.message_verifier(:signed_token).generate(object.token)
+  end
 end
