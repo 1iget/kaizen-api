@@ -1,13 +1,14 @@
 #!/bin/bash
 
-curl "http://localhost:4741/items/${ID}" \
+curl "http://localhost:4741/orders/${ID}" \
   --include \
   --request PATCH \
   --header "Authorization: Token token=${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
-    "item": {
-      "price": 8.99
+    "order": {
+      "status": "OPEN",
+      "item_id": 20
     }
   }'
 

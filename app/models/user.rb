@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   include Authentication
-  # has_many :examples
+  has_many :examples
   has_many :items
+  has_many :orders
 end
