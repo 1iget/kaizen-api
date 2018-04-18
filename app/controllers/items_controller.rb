@@ -3,6 +3,7 @@ class ItemsController < OpenReadController
 
   # GET /items
   def index
+    # @items = current_user.items.find(params[:id])
     @items = Item.all
 
     render json: @items
@@ -23,6 +24,7 @@ class ItemsController < OpenReadController
       render json: @item, status: :created, location: @item
     else
       render json: @item.errors, status: :unprocessable_entity
+      # render json: @item.errors, status: :unprocessable_entity
     end
   end
 
@@ -38,19 +40,16 @@ class ItemsController < OpenReadController
   # DELETE /items/1
   def destroy
     @item.destroy
+    render json: @item
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      if current_user.isadmin == true
-        @item = Item.find(params[:id])
-      else
-        @item = current_user.items.find(params[:id])
+      @item = current_user.items.find(params[:id])
       # Display only the current user's items during show, update, delete
       # Commented out for quick reference during development
       # @item = Item.find(params[:id])
-      end
     end
 
     # Only allow a trusted parameter "white list" through.
