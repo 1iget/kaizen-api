@@ -18,10 +18,12 @@ class ItemsController < OpenReadController
     @item = current_user.items.build(item_params)
     # @item = Item.new(item_params)
 
-    if @item.save
+    if current_user.isadmin == true
+      @item.save
       render json: @item, status: :created, location: @item
     else
       render json: @item.errors, status: :unprocessable_entity
+      # render json: @item.errors, status: :unprocessable_entity
     end
   end
 
