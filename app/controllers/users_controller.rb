@@ -48,7 +48,11 @@ class UsersController < ProtectedController
   end
 
   def index
-    render json: User.all
+    if current_user.isadmin == true
+      render json: User.all
+    else
+      render json: @user, status: :unauthorized
+    end
   end
 
   def show
