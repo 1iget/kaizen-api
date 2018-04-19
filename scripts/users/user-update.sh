@@ -7,7 +7,7 @@ curl "http://localhost:4741/users/${ID}" \
   --header "Content-Type: application/json" \
   --data '{
     "user": {
-      "email": "'"${EMAIL}"'"
+      "isadmin": "true"
     }
   }'
 

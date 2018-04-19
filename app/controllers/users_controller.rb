@@ -56,10 +56,11 @@ class UsersController < ProtectedController
   end
 
   def update
-    if @user.update(user_params)
+    if current_user.isadmin == true
+      @user.update(user_params)
       render json: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors, status: :unauthorized
     end
   end
 
@@ -81,6 +82,6 @@ class UsersController < ProtectedController
 
   def user_params
     params.require(:user)
-          .permit(:email)
+          .permit(:email, :isadmin)
   end
 end
