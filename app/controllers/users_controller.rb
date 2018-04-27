@@ -68,6 +68,18 @@ class UsersController < ProtectedController
     end
   end
 
+  # DELETE /users/1
+  # DELETE /users/1.json
+  def destroy
+    if current_user.isadmin == true
+      @user.destroy(user_params)
+
+      render json: @user
+    else
+      render json: @user.errors, status: :unauthorized
+    end
+  end
+
   private
 
   def set_user
