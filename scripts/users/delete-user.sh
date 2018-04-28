@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl "http://localhost:4741/delete/${ID}" \
+curl "http://localhost:4741/users/${ID}" \
   --include \
   --request DELETE \
   --header "Authorization: Token token=${TOKEN}" \

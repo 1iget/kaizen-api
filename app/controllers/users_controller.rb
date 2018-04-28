@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ProtectedController
-  before_action :set_user, only: %i[update show]
+  before_action :set_user, only: %i[update show destroy]
   skip_before_action :authenticate, only: %i[signup signin]
 
   # POST '/sign-up'
@@ -72,8 +72,7 @@ class UsersController < ProtectedController
   # DELETE /users/1.json
   def destroy
     if current_user.isadmin == true
-      @user.destroy(user_params)
-
+      @user.destroy
       render json: @user
     else
       render json: @user.errors, status: :unauthorized
